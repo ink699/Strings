@@ -1,0 +1,167 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{cancel}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{secdot}
+\usepackage{indentfirst}
+\usepackage[left=1.5cm,right=1.5cm,top=0.3cm,bottom=1.5cm,includefoot,footskip=1.5cm]{geometry}
+\usepackage{psfrag}
+\newcommand{\tr}{\mathop{\mathrm{tr}}\nolimits}
+\newcommand{\p}{\partial}
+\DeclareMathOperator\arcth{arcth}
+\begin{document}
+\textbf{
+\begin{flushright}
+Илья Кочергин, 626 группа
+\end{flushright}}
+\paragraph{\Large Листок 4}
+\section{Вопросы}
+\subsection*{Вопрос 1}
+\noindent Представлением Лакса, или $LA$~--- парой, называется запись некоторой системы дифференциальных уравнений в виде
+\begin{equation}
+\dot{L} = [L,A],
+\end{equation}
+где $L$ и $A$~--- матрицы, или, в более общем случае, дифференциальные операторы.
+\subsection*{Вопрос 2}
+\noindent Для цепочки Тоды (для простоты рассмотрен случай $N = 3$) $L$ и $A$~--- следующие матрицы:
+\begin{equation}
+\begin{gathered}
+L = \begin{pmatrix}
+p_1&x_1&x_3\\
+x_1&p_2&x_2\\
+x_3&x_2&p_3\\
+\end{pmatrix};\\
+\\
+A = \begin{pmatrix}
+0&x_1&-x_3\\
+-x_1&0&x_2\\
+x_3&-x_2&0\\
+\end{pmatrix}.
+\end{gathered}
+\end{equation}
+Для уравнения KdV ими будут дифференциальные операторы:
+\begin{equation}
+\begin{gathered}
+L = -\partial_x^2+u\\
+A = 4\partial_x^3-6u\partial_x-3u'_x
+\end{gathered}
+\end{equation}
+\section{Упражнения}
+\subsection*{Упражнение 1}
+\noindent Рассмотрим матрицу $B = L^n$. Ее производная по времени имеет вид
+\begin{equation}
+\dot{B} = \dot{L}^n = nL^{n-1}\dot{L} = nL^{n-1}[L,A].
+\end{equation}
+Отсюда
+\begin{equation}
+\tr L^n = n\tr L^{n-1}(\tr(AL)-\tr(LA)) = n(\tr(L^{n}A) - \tr(L^{n-1}AL))=0,
+\end{equation}
+т.к. след не зависит от порядка перемножения. Отсюда $\tr(L^n)$ - интеграл движения при любом $n$. Т.к. след выражается через собственные значения, то число линейно-независимых интегралов равно числу собственных значений $L$ (и они также сохраняются).
+\section{Задачи}
+\subsection*{Задача 1}
+\noindent Рассмотрим уравнение KdV:
+\begin{equation}
+u'''_{xxx}+6uu'_x+u'_t=0.
+\end{equation} 
+Произведем замену
+\begin{equation}
+a = x-vt,
+\end{equation}
+и будем искать решение вида
+\begin{equation}
+u(x,t) = f(a).
+\end{equation} 
+Тогда производные $u$ перезаписываются в следующей форме:
+\begin{equation}
+\begin{gathered}
+u'_x = f'a'_x=f'\\
+u'_t = f'a'_t=-vf'.
+\end{gathered}
+\end{equation}
+В новых обозначениях уравнение KdV примет вид
+\begin{equation}
+-vf'+f'''+6ff'=0.
+\end{equation}
+Это уравнение легко интегрируется, получаем
+\begin{equation}
+-vf + f'' + 3f^2 + C_1=0.
+\end{equation}
+Для дальнейшего интегрирования сначала домножим уравнение на $f'$, в итоге получим
+\begin{equation}
+-\frac{1}{2}f^2+\frac{1}{2}f'^2+f^3+C_1f+C_2=0.
+\end{equation}
+При произвольных $C_1$ и $C_2$ невозможно решить это уравнение в элементарных функциях. Примем
+\begin{equation}
+C_1=C_2=0,
+\end{equation}
+тогда приходим к выражению
+\begin{equation}
+f' = \sqrt{vf^2-2f^3},
+\end{equation}
+для решения необходимо найти интеграл
+\begin{equation}
+\int \frac{d f}{f\sqrt{v-2f}}.
+\end{equation}
+Заменой
+\begin{equation}
+u = v-2f
+\end{equation}
+он приводится к виду
+\begin{equation}
+\int \frac{d u}{u^{\frac{3}{2}}-v\sqrt{u}}=/\tau = \sqrt{u}/ = 2\int\frac{d\tau}{\tau^2-v}=-\frac{2}{\sqrt{v}}\arcth\frac{\tau}{\sqrt{v}}.
+\end{equation}
+Отсюда путем обратных замен получаем решение:
+\begin{equation}
+-\arcth\sqrt{1-\frac{2f}{v}} =\frac{1}{2}\sqrt{v}(a + C).
+\end{equation}
+Из этого выражения получаем:
+\begin{equation}
+1-\frac{2f}{v} = \th^2\left(\frac{1}{2}\sqrt{v}(a + C)\right).
+\end{equation}
+Применив тригонометрические свойства и обозначив
+\begin{equation}
+a_0 = -C,
+\end{equation}
+получим окончательное решение:
+\begin{equation}
+f = \frac{1}{2}\frac{v}{\ch^2\left(\frac{1}{2}\sqrt{v}(a - a_0)\right)}.
+\end{equation}
+\subsection{Задача 2}
+\noindent Вычислим $[L,A]\psi$:
+\begin{equation}
+\begin{gathered}
+~[L,A]\psi = (\p_x^2+u)(\psi'''_{xxx}+v\psi'_x+w\psi) - (\p_x^3+v\p_x+w)(\psi''_{xx}+u\psi) = \\
+=\psi_{xx}''(2v_x'-3u_x')+\psi'_x(v''_{xx}+2w'_x-3u''_{xx})+\psi(w''_{xx}-u'''_{xxx}-vu'_x).
+\end{gathered}
+\end{equation}
+Отсюда легко получить условия, при которых $[L,A]$ не содержит операторов дифференцирования:
+\begin{equation}
+\begin{cases}
+2v'_x-3u'_x=0\\
+v''_{xx}+2w'_x-3u''_{xx}=0.\\
+\end{cases}
+\end{equation}
+Эта система несложно разрешается относительно одного из параметров, пусть это будет $u$. Тогда получим:
+\begin{equation}
+\begin{cases}
+v = \frac{3}{2}u\\
+w = \frac{3}{4}u'.\\
+\end{cases}
+\end{equation}
+Тогда уравнение Лакса примет вид
+\begin{equation}
+u'_t=-\frac{3}{2}u'''_{xxx}-\frac{3}{2}uu'_x,
+\end{equation}
+то есть
+\begin{equation}
+u'_t+\frac{3}{2}u'''_{xxx}+\frac{3}{2}uu'_x=0.
+\end{equation}
+\end{document}
